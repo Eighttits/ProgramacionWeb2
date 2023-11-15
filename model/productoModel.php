@@ -7,6 +7,31 @@ class productoModel {
         $this->conn = $conn;
     }
 
+    function obtenerDepartamentos()
+    {
+        $SqlConsulta = "SELECT * FROM departamento;";
+        $result = mysqli_query($this->conn, $SqlConsulta);
+        if($result){
+            return $result;
+        }
+    }
+
+    function obtenerCategorias($idDepartamento)
+    {
+        $SqlConsulta = "SELECT * FROM categoria where id_departamento = '$idDepartamento';";
+        $result = mysqli_query($this->conn, $SqlConsulta);
+        if($result){
+            return $result;
+        }
+    }
+
+    public function insertarProducto($idcategoria, $iddepartamento, $nombre, $precio, $descripcion, $stock){
+        $sqlConsulta = "INSERT INTO producto(id_categoria, id_departamento, nombre, precio, descripcion, stock)
+        VALUES($idcategoria, $iddepartamento, '$nombre', '$precio', '$descripcion', '$stock');";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+    }
+
     ### funciones de consulta de informacion ###
     public function obtenerProductos(){
         $SqlConsulta = "SELECT p.*,c.nombre AS 'categoria', d.nombre AS 'departamento'

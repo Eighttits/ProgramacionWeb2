@@ -245,6 +245,7 @@ $productos = $modeloProductos->obtenerProductos();
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Imagen</th>
+                                    <th>Activo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -258,6 +259,7 @@ $productos = $modeloProductos->obtenerProductos();
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Imagen</th>
+                                    <th>Activo</th>
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>
@@ -273,6 +275,7 @@ $productos = $modeloProductos->obtenerProductos();
                                     <td class="text-center"><?= $row->precio ?></td>
                                     <td class="text-center"><?= $row->stock ?></td>
                                     <td class="text-center"><?= $row->imagen ?></td>
+                                    <td class="text-center"><?php echo $row->activo ? 'Si' : 'No'; ?></td>
                                     <td class="text-center">
                                         <a href="editProduct.php?id=<?= $row->idproducto ?>" class="btn btn-primary">Editar</a>
                                         <button type="button" class="btn btn-danger" onclick="eliminarProducto(<?= $row->id ?>)">
