@@ -118,40 +118,5 @@ function guardarProducto() {
 
 function loadCategories() {
     var selectedDepartment = document.getElementById("productDepartment").value;
-    console.log(selectedDepartment);
-    var categorySelect = document.getElementById("productCategory");
-
-    // Limpiar las opciones actuales
-    categorySelect.innerHTML = '<option value="">Selecciona Una</option>';
-
-    if (selectedDepartment !== "") {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                try {
-                    // Intentar parsear la respuesta JSON
-                    var categories = JSON.parse(xhr.responseText);
-
-                    // Verificar si categories es un array y tiene al menos un elemento
-                    if (Array.isArray(categories) && categories.length > 0) {
-                        // Agregar las categorías al select
-                        categories.forEach(function (category) {
-                            var option = document.createElement("option");
-                            option.value = category.id;
-                            option.text = category.nombre;
-                            categorySelect.add(option);
-                        });
-                    } else {
-                        // Si no hay categorías, mostrar un mensaje o tomar otra acción
-                        console.error("No se encontraron categorías para el departamento seleccionado.");
-                    }
-                } catch (error) {
-                    console.error("Error al parsear la respuesta JSON:", error);
-                }
-            }
-        };
-
-        xhr.open("GET", "../../controller/categoria/get_categories.php?department=" + selectedDepartment, true);
-        xhr.send();
-    }
+    return selectedDepartment;
 }

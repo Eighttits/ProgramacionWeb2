@@ -260,14 +260,28 @@ $modeloProductos = new productoModel($conn);
 
                                 </select>
                             </div>
-
-                            <button type="button" class="btn btn-danger" onclick="loadCategories()">Cargar categorias</button>
+                            
 
                             <div class="form-group col">
                                 <label for="productCategory">Categoría:</label>
                                 <select class="form-control" id="productCategory" name="productCategory" required>
                                     <option value="">Selecciona Una</option>
                                     <!-- Options will be dynamically loaded using JavaScript -->
+
+                                    <?php
+                                    // Llama a la función para obtener las categorías
+                                    $idDepartamento = '<script> loadCategories(); console.log(loadCategories()) </script>';
+                                    $categorias = $modeloProductos->obtenerCategorias($idDepartamento);
+
+                                    if ($categorias) {
+                                        while ($row = mysqli_fetch_assoc($categorias)) {
+                                            // Imprime una opción por cada categoría
+                                            echo '<option value="' . $row['id'] . '">' . $row['nombre'] . '</option>';
+                                        }
+                                        // Libera la memoria de los resultados
+                                        mysqli_free_result($categorias);
+                                    }
+                                    ?> 
                                 </select>
                             </div>
 
