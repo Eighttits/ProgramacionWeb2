@@ -235,6 +235,10 @@ $modeloProductos = new productoModel($conn);
                             <label for="productDescription">Descripción:</label>
                             <textarea class="form-control" id="productDescription" name="descripcion" rows="3" required></textarea>
                         </div>
+                        <div class="mb-3">
+                                <input type="file" class="form-control" id="txtimagen" name="txtimagen">
+
+                            </div>
 
                         <div class="row">
 

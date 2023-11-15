@@ -13,10 +13,37 @@ switch($action){
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $stock = $_POST['stock'];
+        $imagen = $_POST['txtimagen'];
+
+        if($imagen['name'] != ''){
+            if(!(file_exists("../../resources/images/productos"))){
+                $estructura = "../../resources/images/productos";
+                if(!mkdir($estructura, 0, true)){
+                    die('fallo al crear carpetas...');
+                }
+                chmod($estructura, 0777);
+            }
+            $uploaddir = "../../resources/images/productos/";
+            $nuevo_nombre = $imagen['name'];
+    
+            $uploadfile = $uploaddir . $nuevo_nombre;
+    
+            $subido = copy($imagen['tmp_name'], $uploadfile);
+    
+            if($subido){
+                $nuevaImagen = rand(1,5)."_".$nuevo_nombre;
+            } else{
+                $nuevaImagen = "";
+            }
+        } else {
+            $nuevaImagen = "";
+        }
+    
+         
 
         
 
-        $result = $modeloProductos->insertarProducto($idcategoria, $iddepartamento, $nombre, $precio, $descripcion, $stock);
+        $result = $modeloProductos->insertarProducto($idcategoria, $iddepartamento, $nombre, $precio, $descripcion, $stock,$imagen);
     
         if($result == 1){
             $response['msg'] = "El producto se registro correctamente.";
