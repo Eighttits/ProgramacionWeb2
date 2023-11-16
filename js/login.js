@@ -1,13 +1,13 @@
 src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
 
 $(document).ready(function(){
-  $('.user').submit(function(e){
+  $('.usuario').submit(function(e){
     e.preventDefault();
-    var user = $('#exampleInputEmail').val();
+    var usuario = $('#exampleInputEmail').val();
     var password = $('#exampleInputPassword').val();
     
     var formData = {
-      user: user,
+      usuario: usuario,
       password: password
     };
 

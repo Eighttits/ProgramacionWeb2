@@ -24,6 +24,8 @@ class LoginController {
                 }
             } else {
                 echo '<div class="alert alert-danger" role="alert">¡Error! Contraseña o usuario incorrectoe, inténtalo de nuevo.</div>';
+                echo $usuario;
+                echo $password;
             }
         } catch (PDOException $e) {
             // Manejo de errores de conexión a la base de datos

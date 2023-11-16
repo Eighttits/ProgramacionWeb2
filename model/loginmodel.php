@@ -11,14 +11,14 @@ class Login {
             $sql = $this->conn->prepare("SELECT id, usuario, contrasena FROM empleado WHERE usuario = ? LIMIT 1");
             $sql->execute([$usuario]);
             
-            if ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-                if ($this->esadmin($usuario) && password_verify($password, $row['contrasena'])) {
-                    return ['id' => $row['id'], 'usuario' => $row['usuario'], 'es_admin' => true];
-                } elseif (!$this->esadmin($usuario) && password_verify($password, $row['contrasena'])) {
-                    return ['id' => $row['id'], 'usuario' => $row['usuario'], 'es_admin' => false];
-                }
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            
+            if ($row && password_verify($password, $row['contrasena'])) {
+                $es_admin = $this->esadmin($row['id']);
+                return ['id' => $row['id'], 'usuario' => $row['usuario'], 'es_admin' => $es_admin];
             }
-            return null; // Credenciales incorrectas
+    
+            return null; // Credenciales incorrectas o usuario no encontrado
         } catch (PDOException $e) {
             throw new Exception("Error de base de datos: " . $e->getMessage());
         }
@@ -31,9 +31,9 @@ class Login {
             $result = $sql->fetch(PDO::FETCH_ASSOC);
         
             if ($result && $result['es_admin'] == 1) {
-                return true; // El usuario es administrador
+                return true; 
             } else {
-                return false; // El usuario no es administrador
+                return false; 
             }
         }
         
