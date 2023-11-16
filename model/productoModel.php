@@ -7,37 +7,28 @@ class productoModel {
         $this->conn = $conn;
     }
 
-    function obtenerDepartamentos()
+
+    function obtenerCategorias()
     {
-        $SqlConsulta = "SELECT * FROM departamento;";
+        $SqlConsulta = "SELECT * FROM categoria;";
         $result = mysqli_query($this->conn, $SqlConsulta);
         if($result){
             return $result;
         }
     }
 
-    function obtenerCategorias($idDepartamento)
-    {
-        $SqlConsulta = "SELECT * FROM categoria where id_departamento = '$idDepartamento';";
-        $result = mysqli_query($this->conn, $SqlConsulta);
-        if($result){
-            return $result;
-        }
-    }
-
-    public function insertarProducto($idcategoria, $iddepartamento, $nombre, $precio, $descripcion, $stock){
-        $sqlConsulta = "INSERT INTO producto(id_categoria, id_departamento, nombre, precio, descripcion, stock)
-        VALUES($idcategoria, $iddepartamento, '$nombre', '$precio', '$descripcion', '$stock');";
+    public function insertarProducto($idcategoria, $nombre, $precio, $descripcion, $stock, $imgname){
+        $sqlConsulta = "INSERT INTO producto(id_categoria, nombre, precio, descripcion, stock, imagen)
+        VALUES($idcategoria, '$nombre', '$precio', '$descripcion', '$stock', '$imgname');";
         $result = mysqli_query($this->conn, $sqlConsulta);
         return $result;
     }
 
     ### funciones de consulta de informacion ###
     public function obtenerProductos(){
-        $SqlConsulta = "SELECT p.*,c.nombre AS 'categoria', d.nombre AS 'departamento'
+        $SqlConsulta = "SELECT p.*,c.nombre AS 'categoria'
                         FROM producto p 
                         INNER JOIN categoria c ON p.id_categoria = c.id
-                        INNER JOIN departamento d ON p.id_departamento = d.id
                         ORDER BY p.id ASC;";
         $result = mysqli_query($this->conn, $SqlConsulta);
         if($result){

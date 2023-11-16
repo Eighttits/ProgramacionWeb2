@@ -240,7 +240,6 @@ $productos = $modeloProductos->obtenerProductos();
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Categoria</th>
-                                    <th>Departamento</th>
                                     <th>Descripcion</th>
                                     <th>Precio</th>
                                     <th>Stock</th>
@@ -254,7 +253,6 @@ $productos = $modeloProductos->obtenerProductos();
                                     <th>Id</th>
                                     <th>Nombre</th>
                                     <th>Categoria</th>
-                                    <th>Departamento</th>
                                     <th>Descripcion</th>
                                     <th>Precio</th>
                                     <th>Stock</th>
@@ -270,11 +268,12 @@ $productos = $modeloProductos->obtenerProductos();
                                     <td class="text-center"><?= $row->id ?></td>
                                     <td class="text-center"><?= $row->nombre ?></td>
                                     <td class="text-center"><?= $row->categoria ?></td>
-                                    <td class="text-center"><?= $row->departamento ?></td>
                                     <td class="text-center"><?= $row->descripcion ?></td>
                                     <td class="text-center"><?= $row->precio ?></td>
                                     <td class="text-center"><?= $row->stock ?></td>
-                                    <td class="text-center"><?= $row->imagen ?></td>
+                                    <td class="text-center">
+                                        <img src="../../resources/imagenes-productos/<?= $row->imagen ?>" alt="" width="50px">
+                                    </td>
                                     <td class="text-center"><?php echo $row->activo ? 'Si' : 'No'; ?></td>
                                     <td class="text-center">
                                         <a href="editProduct.php?id=<?= $row->idproducto ?>" class="btn btn-primary">Editar</a>

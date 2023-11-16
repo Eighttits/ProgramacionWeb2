@@ -115,8 +115,13 @@ function guardarProducto() {
         },
     });
 }
+var folioDepartamento = 0;
 
-function loadCategories() {
-    var selectedDepartment = document.getElementById("productDepartment").value;
-    return selectedDepartment;
+
+
+function loadCategories(folio) {
+    folioDepartamento = folio;
+    // var selectedDepartment = document.getElementById("productDepartment").value;
+    console.log(folio);
+    return folio;
 }

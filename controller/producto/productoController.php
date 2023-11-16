@@ -8,15 +8,19 @@ $action = $_POST['action'];
 switch($action){
     case 'insert':
         $idcategoria = $_POST['categoria'];
-        $iddepartamento = $_POST['departamento'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $stock = $_POST['stock'];
+        $imagen = $_FILES['img'];
+
+        $imgname = $imagen['name'];
+        move_uploaded_file($imagen['tmp_name'], '../../resources/imagenes-productos/'.$imgname);
+
 
         
 
-        $result = $modeloProductos->insertarProducto($idcategoria, $iddepartamento, $nombre, $precio, $descripcion, $stock);
+        $result = $modeloProductos->insertarProducto($idcategoria, $nombre, $precio, $descripcion, $stock, $imgname);
     
         if($result == 1){
             $response['msg'] = "El producto se registro correctamente.";
