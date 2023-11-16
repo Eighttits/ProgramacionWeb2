@@ -61,6 +61,10 @@ function guardarProducto() {
     const formulario = document.getElementById('addProductForm');
     const formData = new FormData(formulario);
     formData.append("action", "insert");
+
+    for(const[clave,valor] of formData.entries()){
+        console.log(clave,"->",valor);
+    }
     
     $.ajax({
         url: "../../controller/producto/productoController.php",

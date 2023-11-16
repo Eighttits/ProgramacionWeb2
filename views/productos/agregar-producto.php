@@ -103,7 +103,14 @@
                             </a>
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                         </div>
+<<<<<<< HEAD
                     </li>
+=======
+                        <div class="mb-3">
+                                <input type="file" class="form-control" id="txtimagen" name="txtimagen">
+
+                            </div>
+>>>>>>> 8f314656291e2848ff8a0e8c7e3cd9370f80fd44
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
