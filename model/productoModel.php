@@ -37,11 +37,32 @@ class productoModel {
     }
 
     public function eliminarProducto($idproducto){
-        $idproducto = $_POST['idProducto'];
         $sqlConsulta = "DELETE FROM producto WHERE id = '$idproducto';";
         $result = mysqli_query($this->conn, $sqlConsulta);
         return $result;
     }
+
+    public function obtenerProductoPorId($idProducto){
+        $sqlConsulta = "SELECT * FROM producto WHERE id = '$idProducto';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+
+    }
+    
+    public function editarProducto($idProducto, $idcategoria, $nombre, $precio, $descripcion, $stock, $imgname){
+        $sqlConsulta = "UPDATE producto
+                        SET id_categoria = $idcategoria,
+                            nombre = '$nombre',
+                            precio = '$precio',
+                            descripcion = '$descripcion',
+                            stock = '$stock',
+                            imagen = '$imgname'
+                        WHERE id = $idProducto;";
+        
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+    }
+    
 }
 
 

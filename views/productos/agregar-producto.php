@@ -103,14 +103,8 @@
                             </a>
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                         </div>
-<<<<<<< HEAD
                     </li>
-=======
-                        <div class="mb-3">
-                                <input type="file" class="form-control" id="txtimagen" name="txtimagen">
 
-                            </div>
->>>>>>> 8f314656291e2848ff8a0e8c7e3cd9370f80fd44
 
                     <!-- Nav Item - Messages -->
                     <li class="nav-item dropdown no-arrow mx-1">
@@ -252,7 +246,7 @@
 
                     <div class="mb-3">
                         <label for="" class="form-label">Subir Imagen</label>
-                        <input type="file" class="form-control" name="img" id="" placeholder="" aria-describedby="fileHelpId">
+                        <input type="file" class="form-control" name="img" id="" placeholder="" aria-describedby="fileHelpId" accept="image/*">
                     </div>
                     <div class="row">
                         <div class="form-group col">

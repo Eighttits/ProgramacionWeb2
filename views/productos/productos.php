@@ -276,7 +276,7 @@ $productos = $modeloProductos->obtenerProductos();
                                     </td>
                                     <td class="text-center"><?php echo $row->activo ? 'Si' : 'No'; ?></td>
                                     <td class="text-center">
-                                        <a href="editProduct.php?id=<?= $row->idproducto ?>" class="btn btn-primary">Editar</a>
+                                        <a href="editar-producto.php?id=<?= $row->id ?>" class="btn btn-primary">Editar</a>
                                         <button type="button" class="btn btn-danger" onclick="eliminarProducto(<?= $row->id ?>)">
                                             Eliminar
                                         </button>
