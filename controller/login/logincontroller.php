@@ -15,17 +15,12 @@ class LoginController {
             if ($credentials !== null) {
                 $_SESSION['user_id'] = $credentials['id'];
                 $_SESSION['user_name'] = $credentials['usuario'];
-                if ($credentials['es_admin']) {
-                    header("location: index_admin.php");
-                    exit;
-                } else {
-                    header("location: index.php");
-                    exit;
-                }
+                
+                // Redirige según el tipo de usuario
+                header("location: index.php"); // Puedes personalizar la redirección
+                exit;
             } else {
-                echo '<div class="alert alert-danger" role="alert">¡Error! Contraseña o usuario incorrectoe, inténtalo de nuevo.</div>';
-                echo $usuario;
-                echo $password;
+                echo '<div class="alert alert-danger" role="alert">¡Error! Contraseña o usuario incorrecto, inténtalo de nuevo.</div>';
             }
         } catch (PDOException $e) {
             // Manejo de errores de conexión a la base de datos
@@ -34,10 +29,15 @@ class LoginController {
             // Otros errores
             echo "Error: " . $e->getMessage();
         }
+        
     }
 }
 
-// Uso del controlador
+// Recibe los datos del formulario
+$usuario = $_POST['usuario'];
+$password = $_POST['password'];
+
+// Instancia y ejecuta el inicio de sesión
 $loginController = new LoginController();
 $loginController->iniciarSesion($usuario, $password);
 ?>

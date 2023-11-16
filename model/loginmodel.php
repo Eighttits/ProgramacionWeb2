@@ -14,8 +14,7 @@ class Login {
             $row = $sql->fetch(PDO::FETCH_ASSOC);
             
             if ($row && password_verify($password, $row['contrasena'])) {
-                $es_admin = $this->esadmin($row['id']);
-                return ['id' => $row['id'], 'usuario' => $row['usuario'], 'es_admin' => $es_admin];
+                return ['id' => $row['id'], 'usuario' => $row['usuario']];
             }
     
             return null; // Credenciales incorrectas o usuario no encontrado
@@ -23,6 +22,7 @@ class Login {
             throw new Exception("Error de base de datos: " . $e->getMessage());
         }
     }
+    
 
    
         function esadmin($usuario) {
