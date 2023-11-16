@@ -111,7 +111,7 @@ $productos = $modeloProductos->obtenerProductos();
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-end">
-                    <a href="#" class="m-0 font-weight-bold text-primary">Agregar pruduto</a>
+                    <a href="../../../views/productos/agregar-producto.php" class="m-0 font-weight-bold text-primary">Agregar pruduto</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -218,3 +218,4 @@ aria-hidden="true">
 </div>
 </div>
 
+<?php include('../../partials/footer-tables.php'); ?>
