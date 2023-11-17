@@ -1,4 +1,4 @@
-<?php include('../../partials/header-tables.php'); 
+<?php include('../../partials/header.php'); 
 $idProducto = $_GET['id'];
 include('../../model/productoModel.php');
 $modeloProductos = new productoModel($conn);
@@ -48,7 +48,7 @@ $productoCompleto = mysqli_fetch_object($producto);
                 <h1 class="h3 mb-4 text-gray-800">Editar Producto</h1>
 
                 <!-- Your Form Goes Here -->
-                <form id="addProductForm" action="" method="post">
+                <form id="editProductForm" action="" method="post">
                     <div class="form-group">
                         <label for="productName">Nombre:</label>
                         <input type="text" class="form-control" id="productName" name="nombre" value="<?=$productoCompleto->nombre?>" required>
@@ -163,4 +163,4 @@ $productoCompleto = mysqli_fetch_object($producto);
 
 
 
-<?php include('../../partials/footer-tables.php'); ?>
+<?php include('../../partials/footer.php'); ?>

@@ -121,7 +121,7 @@ function guardarProducto() {
 }
 
 function editarProducto() {
-    const formulario = document.getElementById('addProductForm');
+    const formulario = document.getElementById('editProductForm');
     const formData = new FormData(formulario);
     formData.append("action", "edit");
 

@@ -1,11 +1,9 @@
-<?php include('../../partials/header-tables.php');?>
+<?php include('../../partials/header.php');?>
 
 <div id="wrapper">
 
 <!-- Sidebar -->
 <?php include('../../partials/sidebar.php');
-include('../../model/empleadoModel.php');
-$modeloEmpleados = new empleadoModel($conn);
 $empleados = $modeloEmpleados->obtenerEmpleados();
 ?>
 <!-- End of Sidebar -->
@@ -91,8 +89,8 @@ $empleados = $modeloEmpleados->obtenerEmpleados();
                                     <td class="text-center"><?= $row->correo_electronico ?></td>
                                     <td class="text-center"><?= $row->rol ?></td>
                                     <td class="text-center">
-                                        <a href="editar-producto.php?id=<?= $row->id ?>" class="btn btn-primary">Editar</a>
-                                        <button type="button" class="btn btn-danger" onclick="">
+                                        <a href="editar-empleado.php?id=<?= $row->id ?>" class="btn btn-primary">Editar</a>
+                                        <button type="button" class="btn btn-danger" onclick="eliminarEmpleado(<?= $row->id ?>)">
                                             Eliminar
                                         </button>
                                     </td>
@@ -153,4 +151,4 @@ aria-hidden="true">
 </div>
 
 
-<?php include('../../partials/footer-tables.php'); ?>
+<?php include('../../partials/footer.php'); ?>

@@ -1,4 +1,4 @@
-<?php include('../../partials/header-tables.php'); ?>
+<?php include('../../partials/header.php'); ?>
 
 <div id="wrapper">
 
@@ -312,4 +312,4 @@
 
 
 
-<?php include('../../partials/footer-tables.php'); ?>
+<?php include('../../partials/footer.php'); ?>

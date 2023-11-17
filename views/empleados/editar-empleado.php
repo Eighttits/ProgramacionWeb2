@@ -1,9 +1,7 @@
-<?php include('../../partials/header-tables.php'); 
-$idProducto = $_GET['id'];
-include('../../model/productoModel.php');
-$modeloProductos = new productoModel($conn);
-$producto = $modeloProductos->obtenerProductoPorId($idProducto);
-$productoCompleto = mysqli_fetch_object($producto);
+<?php include('../../partials/header.php'); 
+$idEmpleado = $_GET['id'];
+$producto = $modeloEmpleados->obtenerEmpleadoPorId($idEmpleado);
+$empleadoCompleto = mysqli_fetch_object($producto);
 ?>
 
 <div id="wrapper">
@@ -45,73 +43,33 @@ $productoCompleto = mysqli_fetch_object($producto);
 
                 <!-- Page Heading -->
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Editar Producto</h1>
+                <h1 class="h3 mb-4 text-gray-800">Editar Empleado</h1>
 
                 <!-- Your Form Goes Here -->
-                <form id="addProductForm" action="" method="post">
-                    <div class="form-group">
-                        <label for="productName">Nombre:</label>
-                        <input type="text" class="form-control" id="productName" name="nombre" value="<?=$productoCompleto->nombre?>" required>
-                    </div>
+                <form id="editEmployeeForm" action="" method="post">
+                <div class="row">
+                        <div class="form-group col">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" value="<?= $empleadoCompleto->nombre ?>" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="productDescription">Descripción:</label>
-                        <textarea class="form-control" id="productDescription" name="descripcion" rows="3" required><?=$productoCompleto->descripcion?></textarea>
-                    </div>
-
-
-
-
-                    <div class="form-group">
-                        <label for="productDepartment">Categoria:</label>
-                        <select class="form-control" id="productDepartment" name="categoria" required>
-                            <option value="">Selecciona Una</option>
-                            <!-- Add more options as needed -->
-                            <?php
-                            // Llama a la función para obtener las categorías
-                            $categorias = $modeloProductos->obtenerCategorias();
-
-                            if ($categorias) {
-                                while ($row = mysqli_fetch_assoc($categorias)) {
-                                    // Verifica si la categoría actual coincide con el valor de $productoCompleto->id_categoria
-                                    $selected = ($row['id'] == $productoCompleto->id_categoria) ? 'selected' : '';
-
-                                    // Imprime una opción por cada categoría con el atributo selected según la condición
-                                    echo '<option value="' . $row['id'] . '" ' . $selected . '>' . $row['nombre'] . '</option>';
-                                }
-                                // Libera la memoria de los resultados
-                                mysqli_free_result($categorias);
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label for="" class="form-label">Imagen actual</label>
-                        <img src="../../resources/imagenes-productos/<?= $productoCompleto->imagen ?>" alt="Imagen actual del producto" style="max-width: 300px; height: auto;">
-                    </div>
-                    <input type="text" name="img_actual" id="" value="<?= $productoCompleto->imagen ?>" hidden>
-                    <input type="text" name="idProducto" id="" value="<?= $productoCompleto->id ?>" hidden>
-
-                    <div class="mb-3">
-                        <label for="" class="form-label">Subir Nueva Imagen</label>
-                        <input type="file" class="form-control" name="img" id="" placeholder="" aria-describedby="fileHelpId" accept="image/*">
+                        <div class="form-group col">
+                            <label for="apellido">Apellido:</label>
+                            <input type="text" class="form-control" name="apellido" value="<?= $empleadoCompleto->apellido ?>" required>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="form-group col">
-                            <label for="productPrice">Precio:</label>
-                            <input type="number" class="form-control" id="productPrice" name="precio" step="0.01" value="<?= $productoCompleto->precio ?>" required>
-                        </div>
-
-                        <div class="form-group col">
-                            <label for="productStock">Stock:</label>
-                            <input type="number" class="form-control" id="productStock" name="stock" value="<?= $productoCompleto->stock ?>" required>
+                        <label for="" class="form-label">Correo Electronico:</label>
+                        <input type="email" class="form-control" name="email" value="<?= $empleadoCompleto->correo_electronico ?>">
                         </div>
                     </div>
 
-                    <a class="btn btn-primary mt-3" onclick="editarProducto()" type="button">Guardar cambios</a>
+                    <input type="text" class="form-control" name="id" value="<?= $empleadoCompleto->id ?>" hidden required>
+
+
+                    <a class="btn btn-primary mt-3" onclick="editarEmpleado()" type="button">Guardar cambios</a>
                 </form>
 
 
@@ -163,4 +121,4 @@ $productoCompleto = mysqli_fetch_object($producto);
 
 
 
-<?php include('../../partials/footer-tables.php'); ?>
+<?php include('../../partials/footer.php'); ?>

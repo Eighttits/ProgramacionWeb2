@@ -28,32 +28,75 @@ class empleadoModel {
         }
     }
 
-    // public function eliminarProducto($idproducto){
-    //     $sqlConsulta = "DELETE FROM producto WHERE id = '$idproducto';";
-    //     $result = mysqli_query($this->conn, $sqlConsulta);
-    //     return $result;
-    // }
-
-    // public function obtenerProductoPorId($idProducto){
-    //     $sqlConsulta = "SELECT * FROM producto WHERE id = '$idProducto';";
-    //     $result = mysqli_query($this->conn, $sqlConsulta);
-    //     return $result;
-
-    // }
-    
-    // public function editarProducto($idProducto, $idcategoria, $nombre, $precio, $descripcion, $stock, $imgname){
-    //     $sqlConsulta = "UPDATE producto
-    //                     SET id_categoria = $idcategoria,
-    //                         nombre = '$nombre',
-    //                         precio = '$precio',
-    //                         descripcion = '$descripcion',
-    //                         stock = '$stock',
-    //                         imagen = '$imgname'
-    //                     WHERE id = $idProducto;";
+    public function ingresar($nombre, $password){
+        $SqlConsulta = "SELECT usuario, contrasena FROM empleado";
+        $result = mysqli_query($this->conn, $SqlConsulta);
         
-    //     $result = mysqli_query($this->conn, $sqlConsulta);
-    //     return $result;
-    // }
+        while ($row = mysqli_fetch_object($result)){
+            $name = $row->usuario;
+            $pass = $row->contrasena;
+
+
+
+
+            if($nombre == $name && $password == $pass){
+                return 2;
+            }
+            else if($nombre == $name){
+                return 1;
+            }
+
+            else if($nombre == '' && $password == ''){
+                return 3;
+            }
+        }
+        return 0;
+    }
+
+    public function obtenerEmpleado($usuario) {
+        $sqlConsulta = "SELECT * FROM empleado WHERE usuario = '$usuario';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+    
+        // Verifica si la consulta fue exitosa
+        if ($result) {
+            // Obtiene la fila como un array asociativo
+            $empleadoData = mysqli_fetch_assoc($result);
+    
+            // Libera la memoria del resultado
+            mysqli_free_result($result);
+    
+            return $empleadoData;
+        } else {
+            // Manejo de errores (puedes personalizar según tus necesidades)
+            echo "Error en la consulta: " . mysqli_error($this->conn);
+            return null;
+        }
+    }
+    
+
+    public function eliminarEmpleado($idempleado){
+        $sqlConsulta = "DELETE FROM empleado WHERE id = '$idempleado';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+    }
+
+    public function obtenerEmpleadoPorId($idEmpleado){
+        $sqlConsulta = "SELECT * FROM empleado WHERE id = '$idEmpleado';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+
+    }
+    
+    public function editarEmpleado($nombre, $apellido, $email, $id){
+        $sqlConsulta = "UPDATE empleado
+                        SET nombre = '$nombre',
+                            apellido = '$apellido',
+                            correo_electronico = '$email'
+                        WHERE id = $id;";
+        
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+    }
     
 }
 

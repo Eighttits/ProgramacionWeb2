@@ -1,1 +1,1 @@
-<?php include('views/dashboard.php');?>
+<?php include('views/auth/login.php');?>
