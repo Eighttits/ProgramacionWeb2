@@ -589,9 +589,9 @@ aria-hidden="true">
       data: {
         labels: nombres, // Nombres de los productos en el eje X
         datasets: [{
-          label: 'Precios de productos',
+          label: 'Precios',
           data: precios, // Precios en el eje Y
-          backgroundColor: 'rgba(165, 105, 189, 0.5)',
+          backgroundColor:'rgba(0, 0, 255, 0.5)',
           borderColor: 'rgba(74, 35, 90, 1)',
           borderWidth: 1,
           borderRadius: 10
