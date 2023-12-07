@@ -1,4 +1,16 @@
-<?php include('../../partials/header.php'); ?>
+<?php include('../../partials/header.php');
+include '../../model/productoModel.php';
+
+$modeloProductos = new productoModel($conn);
+$productos = $modeloProductos->obtenerProductos();
+
+$nombre = array();
+$precio = array();
+
+foreach ($productos as $row) {
+    $nombres[] = $row['nombre']; 
+    $precios[] = $row['precio']; 
+    } ?>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -18,6 +30,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        <canvas id="miGrafico" class = "container mt-5"></canvas>
 
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -25,6 +38,7 @@
                 <a href="../Ventas/agregarventa.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-download fa-sm text-white-50"></i> Generar venta</a>
             </div>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -563,4 +577,50 @@ aria-hidden="true">
     </div>
 </div>
 </div>
+<script>
+    var nombres = <?= json_encode($nombres)?>;
+    var precios = <?= json_encode($precios)?>;
+
+    var grafica = document.getElementById('miGrafico').getContext('2d');
+
+    // Crea el gráfico de barras
+    var miGrafico = new Chart(grafica, {
+      type: 'bar',
+      data: {
+        labels: nombres, // Nombres de los productos en el eje X
+        datasets: [{
+          label: 'Precios de productos',
+          data: precios, // Precios en el eje Y
+          backgroundColor: 'rgba(165, 105, 189, 0.5)',
+          borderColor: 'rgba(74, 35, 90, 1)',
+          borderWidth: 1,
+          borderRadius: 10
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Precios'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Productos'
+            },
+          }
+        }
+      }
+    });
+  </script>
+
+<?php
+include '../../app/footer.php';
+mysqli_close($conn);
+?>
+
+<script src="../../js/producto.js"></script>
 <?php include('../../partials/footer.php'); ?>
