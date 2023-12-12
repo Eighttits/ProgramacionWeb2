@@ -107,7 +107,7 @@
                         </div>
 
                         <a href="../Ventas/agregarventa.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ">
-                            <i class="fas fa-download fa-sm text-white-50"></i> Generar venta
+                            <i class="fas fa-download fa-sm text-white-50" onclick="guardarVenta()"></i> Generar venta
                         </a>
 
                     </div>
@@ -142,27 +142,29 @@
 </div>
 
 <script>
-    function Agregar() {
-        var productoSeleccionado = document.getElementById("productDepartment");
-        var nombreProducto = productoSeleccionado.options[productoSeleccionado.selectedIndex].text;
-        var idProducto = productoSeleccionado.value; // ID del producto seleccionado
-        var cantidadProducto = document.getElementById("productStock").value;
-        var precioProducto = parseFloat(productoSeleccionado.options[productoSeleccionado.selectedIndex].getAttribute('data-precio'));
-        var clienteSeleccionado = document.getElementById("clientList").value;
-        var total = precioProducto * cantidadProducto;
+function Agregar() {
+    var productoSeleccionado = document.getElementById("productDepartment");
+    var nombreProducto = productoSeleccionado.options[productoSeleccionado.selectedIndex].text;
+    var idProducto = productoSeleccionado.value; // ID del producto seleccionado
+    var cantidadProducto = document.getElementById("productStock").value;
+    var precioProducto = parseFloat(productoSeleccionado.options[productoSeleccionado.selectedIndex].getAttribute('data-precio'));
+    var clienteSeleccionado = document.getElementById("clientList").value;
+    var total = precioProducto * cantidadProducto;
 
-        var table = $('#dataTable').DataTable();
-        table.row.add([
-            idProducto,
-            nombreProducto,
-            precioProducto,
-            cantidadProducto,
-            clienteSeleccionado,
-            total
-        ]).draw(false);
+    var table = $('#dataTable').DataTable();
+    table.row.add([
+        idProducto,
+        nombreProducto,
+        precioProducto,
+        cantidadProducto,
+        clienteSeleccionado,
+        total
+    ]).draw(false);
 
-        calcularTotalPrecio();
-    }
+    calcularTotalPrecio();
+}
+
+
 
 
     function calcularTotalPrecio() {
@@ -177,6 +179,7 @@
 
     $('#totalPrice').val(total.toFixed(2));
 }
+
 
 </script>
 

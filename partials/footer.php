@@ -10,6 +10,7 @@
     <script src="../../js/producto.js"></script>
     <script src="../../js/empleado.js"></script>
     <script src="../../js/cliente.js"></script>
+    <script src="../../js/ventas.js"></script>
 
 
     <!-- Page level plugins -->
