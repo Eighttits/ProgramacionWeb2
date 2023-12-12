@@ -5,7 +5,10 @@
 
     <?php include('../../partials/sidebar.php');
     include('../../model/productoModel.php');
+
     $modeloProductos = new productoModel($conn);
+    $modelocliente = new clienteModel($conn);
+
     ?>
 
     <div id="content-wrapper" class="d-flex flex-column">
@@ -45,6 +48,26 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="clientList">Cliente:</label>
+                        <select class="form-control" id="clientList" name="cliente" required>
+                            <option value="">Selecciona Uno</option>
+                            <?php
+                            // Suponiendo que tengas una función para obtener la lista de clientes en el modelo
+                            $clientes = $modelocliente->obtenerclientes();
+
+                            if ($clientes) {
+                                while ($row = mysqli_fetch_assoc($clientes)) {
+                                    // Imprime una opción por cada cliente con su nombre y apellido
+                                    echo '<option value="' . $row['id'] . '">' . $row['nombre'] . ' ' . $row['apellido'] . '</option>';
+                                }
+                                // Libera la memoria de los resultados
+                                mysqli_free_result($clientes);
+                            }
+                            ?>
+                        </select>
+                    </div>
+
                     <div class="row">
 
 
@@ -72,6 +95,7 @@
                                     <th>Nombre</th>
                                     <th>Precio</th>
                                     <th>Cantidad</th>
+                                    <th>ID Cliente</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -124,6 +148,7 @@
         var idProducto = productoSeleccionado.value; // ID del producto seleccionado
         var cantidadProducto = document.getElementById("productStock").value;
         var precioProducto = parseFloat(productoSeleccionado.options[productoSeleccionado.selectedIndex].getAttribute('data-precio'));
+        var clienteSeleccionado = document.getElementById("clientList").value;
         var total = precioProducto * cantidadProducto;
 
         var table = $('#dataTable').DataTable();
@@ -132,6 +157,7 @@
             nombreProducto,
             precioProducto,
             cantidadProducto,
+            clienteSeleccionado,
             total
         ]).draw(false);
 
@@ -140,16 +166,18 @@
 
 
     function calcularTotalPrecio() {
-        var total = 0;
+    var total = 0;
 
-        $('#dataTable tbody tr').each(function() {
-            var precioProducto = parseFloat($(this).find('td:eq(4)').text());
-            total += precioProducto;
-        });
+    $('#dataTable tbody tr').each(function() {
+        var totalFila = parseFloat($(this).find('td:last').text());
+        if (!isNaN(totalFila)) {
+            total += totalFila;
+        }
+    });
 
+    $('#totalPrice').val(total.toFixed(2));
+}
 
-        $('#totalPrice').val(total.toFixed(2));
-    }
 </script>
 
 <?php include('../../partials/footer.php'); ?>
