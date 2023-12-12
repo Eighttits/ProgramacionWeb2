@@ -2,8 +2,10 @@
 include '../../app/dbConnection.php';
 include '../../model/EmpleadoModel.php';
 include '../../model/clientemodel.php';
+include '../../model/ventamodel.php';
 $modeloEmpleados = new empleadoModel($conn);
 $modelocliente = new clienteModel($conn);
+$modeloventas = new ventamodel($conn);
 session_start();
 
 

@@ -2,9 +2,9 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../../views/auth/dashboard.php">
-        <div class="sidebar-brand-text mx-3">Deji Deri</div>
+        <div class="sidebar-brand-text mx-3">Akineva</div>
+       
     </a>
-
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
@@ -53,17 +53,29 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Clientes</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="../../../views/clientes/cliente.php">Ver clientes</a>
-                <a class="collapse-item" href="../../../views/clientes/agregar-cliente.php">Agregar clientes</a>
-            </div>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClientes" aria-expanded="true" aria-controls="collapseClientes">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Clientes</span>
+    </a>
+    <div id="collapseClientes" class="collapse" aria-labelledby="headingClientes" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="../../../views/clientes/cliente.php">Ver clientes</a>
+            <a class="collapse-item" href="../../../views/clientes/agregar-cliente.php">Agregar clientes</a>
         </div>
-    </li>
+    </div>
+</li>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas" aria-expanded="true" aria-controls="collapseVentas">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Ventas</span>
+    </a>
+    <div id="collapseVentas" class="collapse" aria-labelledby="headingVentas" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="../../../views/ventas/ver-ventas.php">Ver Ventas</a>
+            <a class="collapse-item" href="../../../views/ventas/agregarventa.php">Agregar Venta</a>
+        </div>
+    </div>
+</li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
