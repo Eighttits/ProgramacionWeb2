@@ -54,33 +54,42 @@
                         </div>
                     </div>
 
-                    <a class="btn btn-primary mt-3" onclick="Agregar()" type="button">Agregar</a>
+                    <a class="btn btn-primary mt-3 mb-3" onclick="Agregar()" type="button">Agregar</a>
                 </form>
 
 
             </div>
-        </div>
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Productos</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
 
-                    </table>
-                    <a class="btn btn-primary mt-3 " onclick="guardarProducto()" type="button">Agregar</a>
+                        </table>
+                        <div class="mt-3 mb-3">
+                            <label for="totalPrice" class="font-weight-bold">Total:</label>
+                            <input type="text" class="form-control" id="totalPrice" readonly>
+                        </div>
+
+                        <a href="../Ventas/agregarventa.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm ">
+                            <i class="fas fa-download fa-sm text-white-50"></i> Generar venta
+                        </a>
+
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -109,24 +118,38 @@
 </div>
 
 <script>
-function Agregar() {
-    var productoSeleccionado = document.getElementById("productDepartment");
-    var nombreProducto = productoSeleccionado.options[productoSeleccionado.selectedIndex].text;
-    var idProducto = productoSeleccionado.value; // ID del producto seleccionado
-    var cantidadProducto = document.getElementById("productStock").value;
-    var precioProducto = parseFloat(productoSeleccionado.options[productoSeleccionado.selectedIndex].getAttribute('data-precio'));
-    var total = precioProducto * cantidadProducto;
+    function Agregar() {
+        var productoSeleccionado = document.getElementById("productDepartment");
+        var nombreProducto = productoSeleccionado.options[productoSeleccionado.selectedIndex].text;
+        var idProducto = productoSeleccionado.value; // ID del producto seleccionado
+        var cantidadProducto = document.getElementById("productStock").value;
+        var precioProducto = parseFloat(productoSeleccionado.options[productoSeleccionado.selectedIndex].getAttribute('data-precio'));
+        var total = precioProducto * cantidadProducto;
 
-    var table = $('#dataTable').DataTable();
-    table.row.add([
-        idProducto,
-        nombreProducto,
-        precioProducto,
-        cantidadProducto,
-        total
-    ]).draw(false);
-}
+        var table = $('#dataTable').DataTable();
+        table.row.add([
+            idProducto,
+            nombreProducto,
+            precioProducto,
+            cantidadProducto,
+            total
+        ]).draw(false);
 
+        calcularTotalPrecio();
+    }
+
+
+    function calcularTotalPrecio() {
+        var total = 0;
+
+        $('#dataTable tbody tr').each(function() {
+            var precioProducto = parseFloat($(this).find('td:eq(4)').text());
+            total += precioProducto;
+        });
+
+
+        $('#totalPrice').val(total.toFixed(2));
+    }
 </script>
 
 <?php include('../../partials/footer.php'); ?>

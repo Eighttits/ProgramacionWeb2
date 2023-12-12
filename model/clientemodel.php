@@ -1,6 +1,6 @@
 <?php
 
-class productoModel {
+class clientemodel {
     private $conn;
 
     public function __construct($conn) {
@@ -8,62 +8,86 @@ class productoModel {
     }
 
 
-    function obtenerRol()
-    {
-        $SqlConsulta = "SELECT * FROM rol;";
-        $result = mysqli_query($this->conn, $SqlConsulta);
-        if($result){
-            return $result;
-        }
-    }
 
-    public function insertarempleado($id, $nombre, $apellido, $correo_electronico, $usuario , $contrasena){
-        $sqlConsulta = "INSERT INTO producto(id, nombre, apellido, correo_electronico, usuario, contrasena)
-        VALUES($id, '$nombre', '$apellido', '$correo_electronico', '$usuario', '$contrasena');";
+    public function insertarcliente($nombre, $apellido, $correo_electronico, $direccion, $telefono){
+        $sqlConsulta = "INSERT INTO cliente(nombre, apellido, correo_electronico, direccion, telefono)
+        VALUES('$nombre', '$apellido', '$correo_electronico', '$direccion','$telefono');";
         $result = mysqli_query($this->conn, $sqlConsulta);
         return $result;
     }
 
     ### funciones de consulta de informacion ###
-    public function obtenerEmpleado(){
-        $SqlConsulta = "SELECT p.*,c.nombre AS 'categoria'
-                        FROM  empleado p
-                        INNER JOIN empleado_rol c ON p.id = c.id
-                        ORDER BY p.id ASC;";
+    public function obtenerclientes(){
+        $SqlConsulta = "SELECT * FROM cliente";
         $result = mysqli_query($this->conn, $SqlConsulta);
         if($result){
             return $result;
         }
     }
 
-    public function eliminarProducto($idproducto){
-        $sqlConsulta = "DELETE FROM producto WHERE id = '$idproducto';";
+    public function obtenerCliente($usuario) {
+        $sqlConsulta = "SELECT * FROM cliente WHERE usuario = '$usuario';";
         $result = mysqli_query($this->conn, $sqlConsulta);
-        return $result;
-    }
-
-    public function obtenerProductoPorId($idProducto){
-        $sqlConsulta = "SELECT * FROM producto WHERE id = '$idProducto';";
-        $result = mysqli_query($this->conn, $sqlConsulta);
-        return $result;
-
+    
+        // Verifica si la consulta fue exitosa
+        if ($result) {
+            // Obtiene la fila como un array asociativo
+            $clienteData = mysqli_fetch_assoc($result);
+    
+            // Libera la memoria del resultado
+            mysqli_free_result($result);
+    
+            return $clienteData;
+        } else {
+            // Manejo de errores (puedes personalizar según tus necesidades)
+            echo "Error en la consulta: " . mysqli_error($this->conn);
+            return null;
+        }
     }
     
-    public function editarProducto($idProducto, $idcategoria, $nombre, $precio, $descripcion, $stock, $imgname){
-        $sqlConsulta = "UPDATE producto
-                        SET id_categoria = $idcategoria,
-                            nombre = '$nombre',
-                            precio = '$precio',
-                            descripcion = '$descripcion',
-                            stock = '$stock',
-                            imagen = '$imgname'
-                        WHERE id = $idProducto;";
+    
+
+    public function eliminarCliente($idCliente){
+        $sqlConsulta = "DELETE FROM cliente WHERE id = '$idCliente';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+        return $result;
+    }
+    
+    public function obtenerClientePorId($idCliente){
+        $sqlConsulta = "SELECT * FROM cliente WHERE id = '$idCliente';";
+        $result = mysqli_query($this->conn, $sqlConsulta);
+    
+        if (!$result || mysqli_num_rows($result) == 0) {
+            return null; 
+        }
+    
+        return $result;
+    }
+    
+    
+    
+    public function editarCliente($nombre, $apellido, $correo_electronico , $id){
+        // Prevenir inyección SQL escapando los valores
+        $nombre = mysqli_real_escape_string($this->conn, $nombre);
+        $apellido = mysqli_real_escape_string($this->conn, $apellido);
+        $correo_electronico  = mysqli_real_escape_string($this->conn, $correo_electronico );
+    
+        // Verificar y ajustar valores nulos o vacíos
+        $sqlUpdate = "UPDATE cliente
+                      SET nombre = '$nombre',
+                          apellido = '$apellido'";
         
-        $result = mysqli_query($this->conn, $sqlConsulta);
+        if (!empty($correo_electronico )) {
+            $sqlUpdate .= ", correo_electronico = '$correo_electronico '";
+        }
+        
+        $sqlUpdate .= " WHERE id = $id;";
+        
+        $result = mysqli_query($this->conn, $sqlUpdate);
         return $result;
     }
     
-}
+}    
 
 
 ?>

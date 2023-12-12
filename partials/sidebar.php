@@ -25,12 +25,11 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-box"></i>
-        <span>Productos</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoProductos" aria-expanded="true" aria-controls="collapseTwoProductos">
+            <i class="fas fa-fw fa-box"></i>
+            <span>Productos</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwoProductos" class="collapse" aria-labelledby="headingTwoProductos" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="../../../views/productos/productos.php">Ver productos</a>
                 <a class="collapse-item" href="../../../views/productos/agregar-producto.php">Agregar producto</a>
@@ -39,12 +38,11 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoEmpleados" aria-expanded="true" aria-controls="collapseTwoEmpleados">
             <i class="fas fa-fw fa-user-tie"></i>
             <span>Empleados</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwoEmpleados" class="collapse" aria-labelledby="headingTwoEmpleados" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="../../../views/empleados/empleados.php">Ver empleados</a>
                 <a class="collapse-item" href="../../../views/empleados/agregar-empleado.php">Agregar empleado</a>
@@ -52,19 +50,17 @@
         </div>
     </li>
 
+
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-user"></i>
             <span>Clientes</span>
         </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="../../../views/empleados/empleados.php">Ver categoria</a>
-                <a class="collapse-item" href="../../../views/empleados/empleados.php">Ver empleados</a>
+                <a class="collapse-item" href="../../../views/clientes/cliente.php">Ver clientes</a>
+                <a class="collapse-item" href="../../../views/clientes/agregar-cliente.php">Agregar clientes</a>
             </div>
         </div>
     </li>
@@ -73,7 +69,7 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    
+
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

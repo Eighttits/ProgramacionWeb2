@@ -1,7 +1,9 @@
 <?php
 include '../../app/dbConnection.php';
 include '../../model/EmpleadoModel.php';
+include '../../model/clientemodel.php';
 $modeloEmpleados = new empleadoModel($conn);
+$modelocliente = new clienteModel($conn);
 session_start();
 
 

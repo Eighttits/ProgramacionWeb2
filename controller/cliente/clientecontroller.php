@@ -1,86 +1,66 @@
 <?php
 include '../../app/dbConnection.php';
-include '../../model/loginmodel.php';
-$modelocliente = new $modelocliente($conn);
+include '../../model/clientemodel.php';
+$modeloClientes = new clientemodel($conn);
 $action = $_POST['action'];
 
 
 switch($action){
     case 'insert':
-        $idcategoria = $_POST['categoria'];
         $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-        $stock = $_POST['stock'];
-        $imagen = $_FILES['img'];
-
-
+        $apellido = $_POST['apellido'];
+        $correo_electronico = $_POST['correo_electronico'];
+        $direccion = $_POST['direccion'];
+        $telefono = $_POST['telefono'];
         
-
-        $result = $modeloProductos->insertarProducto($idcategoria, $nombre, $precio, $descripcion, $stock, $imgname);
+        $result = $modeloClientes->insertarCliente($nombre, $apellido, $correo_electronico, $direccion, $telefono);
     
         if($result == 1){
-            $response['msg'] = "El producto se registro correctamente.";
+            $response['msg'] = "El cliente se registró correctamente.";
             $response['status'] = true;
             echo json_encode($response);
         } else {
-            $response['msg'] = "Error al registrar el producto.";
+            $response['msg'] = "Error al registrar el cliente.";
             $response['status'] = false;
             echo json_encode($response);
         }
-    break;
+        break;
     case 'edit':
-        $idcategoria = $_POST['categoria'];
         $nombre = $_POST['nombre'];
-        $descripcion = $_POST['descripcion'];
-        $precio = $_POST['precio'];
-        $stock = $_POST['stock'];
-        $idproducto = $_POST['idProducto'];
-        $img_actual = $_POST['img_actual'];
+        $apellido = $_POST['apellido'];
+        $correo_electronico = $_POST['correo_electronico'];
+        $id = $_POST['id'];
     
-        $imagen = $_FILES['img'];
-        $imgname = '';
-    
-        // Verifica si se ha subido una nueva imagen
-        if ($imagen['size'] > 0) {
-            // Si se ha subido una nueva imagen, procesa y guarda el archivo
-            $imgname = $imagen['name'];
-            move_uploaded_file($imagen['tmp_name'], '../../resources/imagenes-productos/'.$imgname);
-        } else {
-            // Si no se ha subido una nueva imagen, utiliza la imagen actual
-            $imgname = $img_actual;
-        }
-    
-        $result = $modeloProductos->editarProducto($idproducto ,$idcategoria, $nombre, $precio, $descripcion, $stock, $imgname);
+        $result = $modeloClientes->editarCliente($nombre, $apellido, $correo_electronico,$id);
     
         if($result == 1){
-            $response['msg'] = "El producto se editó correctamente.";
+            $response['msg'] = "El cliente se editó correctamente.";
             $response['status'] = true;
             echo json_encode($response);
         } else {
-            $response['msg'] = "Error al editar el producto.";
+            $response['msg'] = "Error al editar el cliente.";
             $response['status'] = false;
             echo json_encode($response);
         }
         break;
     
     case 'delete':
-        $idproducto = $_POST['idProducto'];
-        $result = $modeloProductos->eliminarProducto($idproducto);
+        $idCliente = $_POST['idCliente'];
+        $result = $modeloClientes->eliminarCliente($idCliente);
         if($result == 1){
-            $response['msg'] = "El producto se elimino correctamente.";
+            $response['msg'] = "El cliente se eliminó correctamente.";
             $response['status'] = true;
             echo json_encode($response);
         } else {
-            $response['msg'] = "Error al eliminar el producto.";
+            $response['msg'] = "Error al eliminar el cliente.";
             $response['status'] = false;
             echo json_encode($response);
         }
     break;
 
-    
     default:
     break;
 }
+
 
 ?>

@@ -9,6 +9,8 @@
     <script src="../../js/sb-admin-2.min.js"></script>
     <script src="../../js/producto.js"></script>
     <script src="../../js/empleado.js"></script>
+    <script src="../../js/cliente.js"></script>
+
 
     <!-- Page level plugins -->
     <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
